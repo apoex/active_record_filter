@@ -1,6 +1,6 @@
-# ActiveFilter
+# ActiveRecordFilter
 
-ActiveFilter provides a simple interface to build large filters out
+ActiveRecordFilter provides a simple interface to build large filters out
 of smaller reusable components. Filters can be investigated to see which
 step in the filter removed which entities.
 
@@ -9,7 +9,7 @@ step in the filter removed which entities.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'active_filter'
+gem 'active_record_filter'
 ```
 
 And then execute:
@@ -18,30 +18,30 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install active_filter
+    $ gem install active_record_filter
 
 ## Usage
 
 ### Defining components
 
-Each component is defined as a subclass to `ActiveFilter::Component` and
+Each component is defined as a subclass to `ActiveRecordFilter::Component` and
 implements `filter`. The implemented method should return an ActiveRecord
 relation and a `filter_object` can be accessed for dynamic filtering.
 
 ```ruby
-class UserWithActiveSubscriptionsComponent < ActiveFilter::Component
+class UserWithActiveSubscriptionsComponent < ActiveRecordFilter::Component
   def filter
     User.joins(:subscriptions).merge(Subscription.active)
   end
 end
 
-class UserEmailComponent < ActiveFilter::Component
+class UserEmailComponent < ActiveRecordFilter::Component
   def filter
     User.where("email LIKE '%@?'", filter_object.domain)
   end
 end
 
-class UserRatingPrioritizerComponent < ActiveFilter::Component
+class UserRatingPrioritizerComponent < ActiveRecordFilter::Component
   def filter
     User.order(rating: :desc)
   end
@@ -50,11 +50,11 @@ end
 
 ### Defining filters
 
-Filters are defined by extending `ActiveFilter::Base`, specifying which model
+Filters are defined by extending `ActiveRecordFilter::Base`, specifying which model
 it `applies_to` and which `components` should be applied.
 
 ```ruby
-class PromotableUsersFilter < ActiveFilter::Base
+class PromotableUsersFilter < ActiveRecordFilter::Base
   applies_to User
 
   components UserWithActiveSubscriptionsComponent,

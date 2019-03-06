@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module ActiveFilter
+module ActiveRecordFilter
   # Executes a series of filters on a specific model class.
   # Stores each execution step in order to figure out which step
   # filtered away which entities.

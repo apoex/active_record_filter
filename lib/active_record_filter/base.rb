@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module ActiveFilter
+module ActiveRecordFilter
   # Base class that should be extended when creating filters.
   #
   class Base

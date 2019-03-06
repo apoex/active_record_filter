@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version     = ActiveRecordFilter::VERSION
   s.date        = '2019-03-03'
   s.summary     = 'Step by step filters for ActiveRecord'
-  s.description = 'Break large filters into components and see how each ' + \
+  s.description = 'Break large filters into components and see how each ' \
                   'component affects the result'
   s.authors     = ['Love Ottosson']
   s.email       = 'love.ottosson@apoex.se'

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-module ActiveFilter
+module ActiveRecordFilter
   # Base class that should be extended when creating filters.
   #
   class Base
     def execute(filter_object)
-      pipeline.execute(filter_object)
+      executer.execute(filter_object)
     end
 
     def results
@@ -21,7 +21,7 @@ module ActiveFilter
     end
 
     def applied_filters
-      pipeline.applied_filters
+      executer.applied_filters
     end
 
     class << self
@@ -42,8 +42,8 @@ module ActiveFilter
 
     private
 
-    def pipeline
-      @pipeline ||= Pipeline.new(model_class, *filter_components)
+    def executer
+      @executer ||= FilterExecuter.new(model_class, *filter_components)
     end
 
     def model_class

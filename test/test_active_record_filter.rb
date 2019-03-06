@@ -1,52 +1,52 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
-require 'active_filter'
+require 'active_record_filter'
 require 'support/helper'
 
-class ActiveFilterTest < Minitest::Test
-  class TestComponentA < ActiveFilter::Component
+class ActiveRecordFilterTest < Minitest::Test
+  class TestComponentA < ActiveRecordFilter::Component
     def filter
       TestModel.where(column_a: filter_object.query)
     end
   end
 
-  class TestComponentB < ActiveFilter::Component
+  class TestComponentB < ActiveRecordFilter::Component
     def filter
       TestModel.order(column_b: :desc)
     end
   end
 
-  class TestComponentC < ActiveFilter::Component
+  class TestComponentC < ActiveRecordFilter::Component
     def filter
       TestModel.where('column_c > ?', filter_object.min_value)
     end
   end
 
-  class TestFilterAB < ActiveFilter::Base
+  class TestFilterAB < ActiveRecordFilter::Base
     applies_to TestModel
 
     components TestComponentA,
                TestComponentB
   end
 
-  class TestFilterAC < ActiveFilter::Base
+  class TestFilterAC < ActiveRecordFilter::Base
     applies_to TestModel
 
     components TestComponentA,
                TestComponentC
   end
 
-  class TestFilterB < ActiveFilter::Base
+  class TestFilterB < ActiveRecordFilter::Base
     applies_to TestModel
 
     components TestComponentB
   end
 
-  class TestFilterNotImplemented < ActiveFilter::Base
+  class TestFilterNotImplemented < ActiveRecordFilter::Base
     applies_to TestModel
 
-    components ActiveFilter::Component
+    components ActiveRecordFilter::Component
   end
 
   class FilterObject

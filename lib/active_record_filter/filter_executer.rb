@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-module ActiveFilter
+module ActiveRecordFilter
   # Executes a series of filters on a specific model class.
   # Stores each execution step in order to figure out which step
   # filtered away which entities.
   #
-  class Pipeline
+  class FilterExecuter
     attr_reader :applied_filters
 
     def initialize(model_class, *component_classes)
@@ -17,14 +17,14 @@ module ActiveFilter
     def execute(filter_object)
       @applied_filters = []
 
-      execute_pipeline(filter_object)
+      apply_filters(filter_object)
     end
 
     private
 
     attr_reader :component_classes, :model_class
 
-    def execute_pipeline(filter_object)
+    def apply_filters(filter_object)
       relation = model_class.all
 
       component_classes.each do |component_class|
@@ -45,9 +45,8 @@ module ActiveFilter
       applied_filter.relation
     end
 
-    # Represents a step in the pipeline execution.
-    # Stores how the relation looks after a specific component is applied.
-    # Used for internal house keeping.
+    # Represents a step in the filter execution.
+    # Stores how the relations looked after a specific component is applied.
     #
     class AppliedFilter
       attr_reader :relation, :component

@@ -5,7 +5,7 @@ module ActiveRecordFilter
   #
   class Base
     def execute(filter_object)
-      pipeline.execute(filter_object)
+      executer.execute(filter_object)
     end
 
     def results
@@ -21,7 +21,7 @@ module ActiveRecordFilter
     end
 
     def applied_filters
-      pipeline.applied_filters
+      executer.applied_filters
     end
 
     class << self
@@ -42,8 +42,8 @@ module ActiveRecordFilter
 
     private
 
-    def pipeline
-      @pipeline ||= Pipeline.new(model_class, *filter_components)
+    def executer
+      @executer ||= FilterExecuter.new(model_class, *filter_components)
     end
 
     def model_class

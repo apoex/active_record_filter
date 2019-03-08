@@ -29,8 +29,6 @@ module ActiveRecordFilter
 
       component_classes.each do |component_class|
         relation = apply_filter(relation, component_class, filter_object)
-
-        break if relation.empty?
       end
 
       relation

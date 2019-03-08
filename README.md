@@ -1,4 +1,6 @@
 # ActiveRecordFilter
+[![Build Status](https://travis-ci.org/apoex/active_record_filter.svg?branch=master)](https://travis-ci.org/apoex/active_record_filter)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c6fbd4d46e4ca10227d3/maintainability)](https://codeclimate.com/github/apoex/active_record_filter/maintainability)
 
 ActiveRecordFilter provides a simple interface to build large filters out
 of smaller reusable components. Filters can be investigated to see which

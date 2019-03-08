@@ -96,13 +96,6 @@ class ActiveRecordFilterTest < Minitest::Test
     assert_equal filter.at_step(1).component.class, TestComponentB
   end
 
-  def test_early_return
-    filter_object = FilterObject.new(query: 'ohno', min_value: 5)
-    filter        = TestFilterAC.execute(filter_object)
-
-    assert_equal filter.applied_filters.count, 1
-  end
-
   def test_applied_filters
     filter_object = FilterObject.new(query: 'test')
     filter        = TestFilterAB.execute(filter_object)

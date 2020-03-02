@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'minitest/autorun'
-require 'active_record_filter'
-require 'support/helper'
+require 'test_helper'
 
 class ActiveRecordFilterTest < Minitest::Test
   class TestComponentA < ActiveRecordFilter::Component

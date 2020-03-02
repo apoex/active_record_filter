@@ -23,5 +23,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'activerecord', '>= 4', '< 6'
   s.add_development_dependency 'rake', '>= 10.0'
   s.add_development_dependency 'minitest', '< 6'
+  s.add_development_dependency 'simplecov', '~> 0.17.1'
   s.add_development_dependency 'sqlite3', '~> 1.4'
 end

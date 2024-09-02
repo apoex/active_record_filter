@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.executables   = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
   s.require_paths = ['lib']
 
-  s.add_runtime_dependency 'activerecord', '>= 4', '< 7'
+  s.add_runtime_dependency 'activerecord', '>= 4', '< 8'
   s.add_development_dependency 'rake', '>= 10.0'
   s.add_development_dependency 'minitest', '< 6'
   s.add_development_dependency 'simplecov', '~> 0.17.1'
